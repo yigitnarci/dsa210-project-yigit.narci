@@ -2,12 +2,12 @@
 
 ## Project Proposal
 
-The aim of this project is to analyze **the factors affecting NBA players' jersey sales** and to explore the relationship between **player performance, popularity, and team success**.  
-Through this project, I will investigate **how various player-specific and team-related attributes influence jersey sales**, and **which factors are most correlated with player popularity and sales performance**.
+This project will examine what influences NBA players' jersey sales. The goal is to understand how factors like **player performance, social media presence, and team achievements** contribute to jersey popularity.  
+By analyzing these elements, I hope to figure out **which aspects most strongly relate to jersey sales and public interest** in NBA players.
 
-### Key Research Questions:
+### Research Questions:
 - How does a player's **on-court performance** (points per game, games played, minutes played) affect jersey sales?
-- To what extent does **social media popularity (Instagram followers)** impact jersey sales?
+- How important is **social media popularity (e.g., Instagram followers)** in determining jersey sales?
 - Is there a relationship between **team success (e.g., championship, playoffs)** and jersey sales?
 - Can **Google search trends** explain spikes in jersey sales?
 
@@ -29,7 +29,7 @@ The analysis will be built on **multiple data sources**, focusing on **the top N
 
 ## Data Collection Plan
 
-I plan to collect and **merge the following data** to create a comprehensive dataset:
+I plan to collect and **merge the following data** to create a dataset:
 
 ### Step 1: **Primary Dataset (Jersey Sales)**
 - **Top NBA jersey sales lists** from Hoopshype for the past several seasons.
@@ -38,9 +38,9 @@ I plan to collect and **merge the following data** to create a comprehensive dat
 ### Step 2: **Enrichment Variables**
 | Variable                                     | Collection Method                                       |
 |----------------------------------------------|------------------------------------------------------|
-| **Points per Game (PTS)**                    | Web scraping from **Basketball-Reference** (Python/BeautifulSoup) |
-| **Games Played (GP)**                        | Web scraping from **Basketball-Reference** (Python/BeautifulSoup) |
-| **Total Minutes Played (MIN)**               | Web scraping from **Basketball-Reference** (Python/BeautifulSoup) |
+| **Points per Game (PTS)**                    | Web scraping from **Basketball-Reference** (Python) |
+| **Games Played (GP)**                        | Web scraping from **Basketball-Reference** (Python) |
+| **Total Minutes Played (MIN)**               | Web scraping from **Basketball-Reference** (Python) |
 | **Awards Won (All-Star, MVP, DPOY)**          | Web scraping from **Basketball-Reference**, player career highlights |
 | **Instagram Followers (M)**                   | Manual collection for top players (or using Instrack/SocialBlade when available) |
 | **Google Trends Index**                      | Automated collection via **pytrends API** (Python)    |
