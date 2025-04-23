@@ -96,11 +96,12 @@ Each visualization supports the respective hypothesis test, highlighting key tre
 
 ### 1. Stats-Based Hypothesis
 
-![PTS/Game by Year](figures/ptg-game-by-year.png)  
+![PTS by Year](figures/ptg-game-by-year.png)  
 ![Games Played by Year](figures/games-played-by-year.png)  
 ![Minutes per Game by Year](figures/minute-per-game-average-by-year.png)  
 ![Award Count by Year](figures/award-by-year.png)  
-![Pearson Full Stats](figures/pearson-fig-whole-stats.png)  
+![Pearson Full Stats](figures/pearson-fig-whole-stats.png) 
+![Pearson Regression](figures/stat-corr.png)
 
 ### 2. Google Trends Hypothesis
 
