@@ -95,15 +95,17 @@ Seasons and player names are formatted consistently and merged on **Season** & *
 Each visualization supports the respective hypothesis test, highlighting key trends across five seasons.
 
 ### 1. Stats-Based Hypothesis
-- ![PTS/Game by Year](figures/ptg:game by year.png)
-- ![Games Played by Year](figures/games played by year.png)
-- ![Minutes per Game by Year](figures/minute per game average by year.png)
-- ![Award Count by Year](figures/award by year.png)
-- ![Pearson Full Stats](figures/pearson fig whole stats.png)
+
+![PTS/Game by Year](figures/ptg-game-by-year.png)  
+![Games Played by Year](figures/games-played-by-year.png)  
+![Minutes per Game by Year](figures/minute-per-game-average-by-year.png)  
+![Award Count by Year](figures/award-by-year.png)  
+![Pearson Full Stats](figures/pearson-fig-whole-stats.png)  
 
 ### 2. Google Trends Hypothesis
-- ![Google Trends vs Jersey Rank](figures/google data jersey rank.png)
-- ![Google Trends Regression](figures/google trend corr.png)
+
+![Google Trends vs Jersey Rank](figures/google-data-jersey-rank.png)  
+![Google Trends Regression](figures/google-trend-corr.png)
 
 
 Each visualization supports the respective hypothesis test, highlighting key trends across five seasons.
