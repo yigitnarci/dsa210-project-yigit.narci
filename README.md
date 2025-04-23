@@ -91,15 +91,20 @@ Seasons and player names are formatted consistently and merged on **Season** & *
 - **Google search popularity** shows a **statistically significant inverse correlation** with jersey sales ⇒ **H₀ rejected, H₁ accepted**.
 
 ## Visualizations
-These figures are stored in the `figures/` folder:
 
-- `figures/ptg:game by year.png`
-- `figures/games played by year.png`
-- `figures/minute per game average by year.png`
-- `figures/award by year.png`
-- `figures/pearson fig whole stats.png`
-- `figures/google data jersey rank.png`
-- `figures/google trend corr.png`
+Each visualization supports the respective hypothesis test, highlighting key trends across five seasons.
+
+### 1. Stats-Based Hypothesis
+- ![PTS/Game by Year](figures/ptg:game by year.png)
+- ![Games Played by Year](figures/games played by year.png)
+- ![Minutes per Game by Year](figures/minute per game average by year.png)
+- ![Award Count by Year](figures/award by year.png)
+- ![Pearson Full Stats](figures/pearson fig whole stats.png)
+
+### 2. Google Trends Hypothesis
+- ![Google Trends vs Jersey Rank](figures/google data jersey rank.png)
+- ![Google Trends Regression](figures/google trend corr.png)
+
 
 Each visualization supports the respective hypothesis test, highlighting key trends across five seasons.
 
