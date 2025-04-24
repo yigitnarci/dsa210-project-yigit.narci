@@ -51,17 +51,26 @@ View the full codebase and data at: [yigitnarci/dsa210-project-yigit.narci](http
 
 ---
 
-# NBA Jersey Sales Analysis
+# NBA Jersey Sales Analysis and Its Relationship with Player Performance and Popularity
 
 ## Project Overview
-This project investigates the drivers of NBA jersey sales over five seasons by combining sales rankings with player performance metrics, awards data, and Google search trends to uncover factors influencing popularity.
+This project investigates the drivers of NBA jersey sales over five seasons by combining jersey sales rankings with player performance metrics, awards data, and Google search trends to uncover the most relevant predictors of popularity.
+
+## Research Questions
+- How does a player's **on-court performance** (points per game, games played, minutes per game) affect jersey sales?
+- Does the **number of awards** influence player popularity through jersey sales?
+- Can **Google search trends** explain jersey sales popularity?
+
+---
 
 ## Data Sources
 - **Jersey Sales** (`jersey_ranks.csv`): Top-8 jersey sales rank per season (1 = highest seller).
-- **Performance & Awards** (`nba_top8_last5_cleaned_with_awards.csv`): Points per game (PTS/Game), games played (GP), minutes per game (MIN/Game), and award counts.
-- **Google Trends** (`combined_google_trends.csv`): Average weekly Trends index per player per season.
-  
-- ## Code Files Description
+- **Performance & Awards** (`nba_top8_last5_cleaned_with_awards.csv`): Points/Game, Games Played, Minutes/Game, Award Count.
+- **Google Trends** (`combined_google_trends.csv`): Weekly average search popularity scores for each player.
+
+---
+
+## Code Files Description
 
 | File Name                        | Description                                                                 |
 |----------------------------------|-----------------------------------------------------------------------------|
@@ -76,53 +85,93 @@ This project investigates the drivers of NBA jersey sales over five seasons by c
 | `web scraping.py`                | Used for scraping season-by-season Google Trends data per player. (manual backup used in final version) |
 | `combining_trend_stats.py`       | Merges cleaned jersey ranking data with Google Trends averages by season and player. |
 
+---
 
-Seasons and player names are formatted consistently and merged on **Season** & **Player**, resulting in 35 complete records.
+## Exploratory Data Analysis (EDA)
+Before running hypothesis tests, we visualized the data to explore trends across seasons and player profiles.
+
+### Points per Game by Season
+![PTS/Game by Year](figures/ptg-game-by-year.png)
+
+### Games Played by Season
+![Games Played](figures/games-played-by-year.png)
+
+### Minutes per Game by Season
+![Minutes/Game](figures/minute-per-game-average-by-year.png)
+
+### Award Count by Season
+![Award Count](figures/award-by-year.png)
+
+### Google Trends Index by Season
+![Google Trends Index](figures/google-data-jersey-rank.png)
+
+---
 
 ## Hypotheses
-1. **Performance & Awards vs. Jersey Sales**
-   - **H₀**: No correlation between on‐court metrics (PTS/Game, GP, MIN/Game) & award count and jersey rank.
-   - **H₁**: A significant correlation exists.
-2. **Google Trends vs. Jersey Sales**
-   - **H₀**: No correlation between players’ average Google Trends index and jersey rank.
-   - **H₁**: A significant correlation exists.
+
+### Hypothesis 1: Performance & Awards → Jersey Sales
+- **H₀**: No correlation between PTS/Game, GP, MPG, Award Count and jersey rank.
+- **H₁**: There is a correlation.
+
+### Hypothesis 2: Google Trends → Jersey Sales
+- **H₀**: No correlation between average Google Trends score and jersey rank.
+- **H₁**: There is a correlation.
+
+---
 
 ## Analytical Methods
-1. **Data Preparation**: Clean and merge CSVs, ensure consistent season notation.
-2. **Correlation Analysis**:
-   - **Statistical Metrics**: Spearman & Pearson correlations for PTS/Game, GP, MIN/Game, and Award Count using `stat_correlation.py`.
-   - **Google Trends**: Spearman & Pearson correlations using `google_graph_correlation.py`.
-3. **Visualization**: Faceted scatter plots and regression lines per variable and season.
+- All datasets were cleaned and merged by `Season` and `Player`.
+- **Statistical Tests**:
+  - **Spearman & Pearson correlation** were calculated for all metrics using `stat_correlation.py`.
+  - Google Trends correlations were computed with `google_graph_correlation.py`.
+
+---
 
 ## Results
-- **Performance & Awards** (`stat_correlation.py`):
-  - Spearman & Pearson p > 0.05 for all metrics ⇒ **no significant correlations** ⇒ **H₀ retained**.
-- **Google Trends** (`google_graph_correlation.py`):  
-  - Spearman ρ = –0.412 (p = 0.008) and Pearson r = –0.374 (p = 0.017) ⇒ **statistically significant** ⇒ **H₀ rejected, H₁ accepted**.  
-  - This suggests that **higher Google search interest is associated with better jersey sales** (lower rank).
+
+### Correlation Summary Table
+| Metric         | Spearman ρ | p-value | Pearson r | p-value |
+|----------------|-------------|---------|-----------|---------|
+| Points/Game    |   0.095     |  0.586  |   0.089   |  0.614  |
+| Games Played   |  -0.061     |  0.726  |  -0.053   |  0.752  |
+| Minutes/Game   |  -0.068     |  0.700  |  -0.067   |  0.701  |
+| Award Count    |  -0.149     |  0.393  |  -0.162   |  0.354  |
+| Google Trends  |  -0.412     |  0.008  |  -0.374   |  0.017  |
+
+### Interpretation
+
+- **Performance & Awards**: No statistically significant correlation found for any metric.
+  - H₀ retained.
+- **Google Trends**: Strong, significant inverse correlation with jersey sales.
+  - H₀ rejected, H₁ accepted.
+
+---
 
 ## Conclusion
-- **Performance metrics and awards** do **not** significantly influence jersey sales rankings ⇒ **H₀ retained**.
-- **Google search popularity** shows a **statistically significant inverse correlation** with jersey sales ⇒ **H₀ rejected, H₁ accepted**.
+
+- **Performance metrics and awards** do **not** significantly influence jersey sales rankings ⇒ H₀ retained.
+- **Google search popularity** shows a statistically significant inverse correlation with jersey sales ⇒ H₀ rejected, H₁ accepted.
+
+---
 
 ## Visualizations
-
 Each visualization supports the respective hypothesis test, highlighting key trends across five seasons.
 
 ### 1. Stats-Based Hypothesis
-
-![PTS by Year](figures/ptg-game-by-year.png)  
-![Games Played by Year](figures/games-played-by-year.png)  
-![Minutes per Game by Year](figures/minute-per-game-average-by-year.png)  
-![Award Count by Year](figures/award-by-year.png)  
-![Pearson Full Stats](figures/pearson-fig-whole-stats.png) 
-![Pearson Regression](figures/stat-corr.png)
+- ![PTS by Year](figures/ptg-game-by-year.png)
+- ![Games Played by Year](figures/games-played-by-year.png)
+- ![Minutes per Game by Year](figures/minute-per-game-average-by-year.png)
+- ![Award Count by Year](figures/award-by-year.png)
+- ![Pearson Full Stats](figures/pearson-fig-whole-stats.png)
 
 ### 2. Google Trends Hypothesis
+- ![Google Trends Index](figures/google-data-jersey-rank.png)
+- ![Pearson Google Index](figures/google-trend-pearson.png)
 
-![Google Trends vs Jersey Rank](figures/google-data-jersey-rank.png)  
-![Google Trends Regression](figures/google-trend-corr.png)
+---
+
+## GitHub Repository
+[🔗 View Project on GitHub](https://github.com/yigitnarci/dsa210-project-yigit.narci)
 
 
-Each visualization supports the respective hypothesis test, highlighting key trends across five seasons.
 
