@@ -158,14 +158,9 @@ Before running hypothesis tests, we visualized the data to explore trends across
 Each visualization supports the respective hypothesis test, highlighting key trends across five seasons.
 
 ### 1. Stats-Based Hypothesis
-- ![PTS by Year](figures/ptg-game-by-year.png)
-- ![Games Played by Year](figures/games-played-by-year.png)
-- ![Minutes per Game by Year](figures/minute-per-game-average-by-year.png)
-- ![Award Count by Year](figures/award-by-year.png)
 - ![Pearson Full Stats](figures/pearson-fig-whole-stats.png)
 
 ### 2. Google Trends Hypothesis
-- ![Google Trends Index](figures/google-data-jersey-rank.png)
 - ![Pearson Google Index](figures/google-trend-pearson.png)
 
 ---
