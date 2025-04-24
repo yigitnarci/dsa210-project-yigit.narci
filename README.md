@@ -21,7 +21,6 @@ The analysis is built on **multiple data sources**, focusing on **the top NBA je
 | **Hoopshype (Top Jersey Sales)**                 | Jersey sales rankings for each NBA season          | Main target variable (ranking of sales)       |
 | **Basketball-Reference**                         | Points per Game (PTS), Games Played (GP), Total Minutes Played (MIN), Awards won (MVP, All-Star, etc.) | Player performance metrics                    |
 | **Google Trends (via pytrends API)**             | Search trend index for player names               | Player public popularity/interest metric     |
-| **NBA.com / Basketball-Reference (Teams)**      | Team success: Champion status (0/1), Playoff status (0/1) | To analyze team effect on jersey sales       |
 
 ---
 
@@ -61,6 +60,22 @@ This project investigates the drivers of NBA jersey sales over five seasons by c
 - **Jersey Sales** (`jersey_ranks.csv`): Top-8 jersey sales rank per season (1 = highest seller).
 - **Performance & Awards** (`nba_top8_last5_cleaned_with_awards.csv`): Points per game (PTS/Game), games played (GP), minutes per game (MIN/Game), and award counts.
 - **Google Trends** (`combined_google_trends.csv`): Average weekly Trends index per player per season.
+  
+- ## Code Files Description
+
+| File Name                        | Description                                                                 |
+|----------------------------------|-----------------------------------------------------------------------------|
+| `stat_correlation.py`            | Calculates Spearman & Pearson correlations between jersey sales rank and player stats: Points/Game, Games Played, Minutes/Game, and Award Count. |
+| `google_graph_correlation.py`    | Performs correlation analysis between Google Trends index and jersey sales rank, outputs both Spearman and Pearson values. |
+| `pts_graph.py`                   | Generates scatter plot visualizing Points/Game by season and jersey rank. |
+| `game_played_graph.py`           | Visualizes Games Played per season vs. jersey rank using color-coded year markers. |
+| `minutepergame_played_graph.py` | Displays Minutes/Game data across five seasons and their relation to jersey ranks. |
+| `award_graph.py`                 | Creates award count plots and analyzes their distribution with respect to jersey ranks. |
+| `pearson_graph_hyp1.py`          | Generates Pearson regression plots for all stat-based metrics in one combined figure. |
+| `google_graph.py`                | Creates a scatter plot of average Google Trends vs. jersey sales rank for all players. |
+| `web scraping.py`                | Used for scraping season-by-season Google Trends data per player. (manual backup used in final version) |
+| `combining_trend_stats.py`       | Merges cleaned jersey ranking data with Google Trends averages by season and player. |
+
 
 Seasons and player names are formatted consistently and merged on **Season** & **Player**, resulting in 35 complete records.
 
