@@ -44,10 +44,6 @@ The data was collected and **merged from multiple sources**:
 | LeBron James    | 2022-23  | 1           | 25.7     | 71             | 35.3           | 3             | 21.5               |
 | Stephen Curry   | 2024-25  | 2           | 26.1     | 73             | 34.9           | 0             | 20.2               |
 
----
-
-## Project GitHub
-View the full codebase and data at: [yigitnarci/dsa210-project-yigit.narci](https://github.com/yigitnarci/dsa210-project-yigit.narci)
 
 ---
 
@@ -86,6 +82,9 @@ This project investigates the drivers of NBA jersey sales over five seasons by c
 | `combining_trend_stats.py`       | Merges cleaned jersey ranking data with Google Trends averages by season and player. |
 
 ---
+
+## 📓 Notebook
+You can view the project analysis notebook here: [🔗 dsa210_project_yigit_narci.ipynb](./dsa210_project_yigit_narci.ipynb)
 
 ## Exploratory Data Analysis (EDA)
 Before running hypothesis tests, we visualized the data to explore trends across seasons and player profiles.
@@ -146,6 +145,7 @@ Before running hypothesis tests, we visualized the data to explore trends across
   - H₀ rejected, H₁ accepted.
 
 ---
+
 
 ## Conclusion
 
