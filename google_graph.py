@@ -1,11 +1,11 @@
-# google_correlation.py
+# google_trend_viz.py
+
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.stats import spearmanr, pearsonr
 
 # 1) Load the CSVs
-jersey = pd.read_csv('jersey_ranks.csv')             # columns: Season, Player, Rank
-trend_wide = pd.read_csv('combined_google_trends.csv')  # columns: date, <Player1>, <Player2>, …
+jersey     = pd.read_csv('jersey_ranks.csv')             # columns: Season, Player, Rank
+trend_wide = pd.read_csv('combined_google_trends.csv')   # columns: date, <Player1>, <Player2>, …
 
 # 2) Clean up column names
 for df in (jersey, trend_wide):
@@ -19,17 +19,14 @@ trend = trend_wide.melt(
 )
 
 # 4) Parse dates and bucket into seasons
-trend['date'] = pd.to_datetime(trend['date'])
+trend['date'] = pd.to_datetime(trend['date'], errors='coerce')
 
 def date_to_season(dt):
-    # NBA season runs roughly Oct → Jun:
-    # Oct–Dec → season starts that year; Jan–Jun → season started previous year
+    # NBA season runs roughly Oct → Jun
     if dt.month >= 10:
-        start = dt.year
-        end   = dt.year + 1
+        start, end = dt.year, dt.year + 1
     else:
-        start = dt.year - 1
-        end   = dt.year
+        start, end = dt.year - 1, dt.year
     return f"{start}-{str(end)[2:]}"
 
 trend['Season'] = trend['date'].apply(date_to_season)
@@ -41,7 +38,7 @@ trend_avg = (
     .mean()
 )
 
-# 6) (Optionally) normalize formatting of jersey seasons too
+# 6) (Optional) normalize jersey season formatting
 def unify_season(s):
     s = s.replace('–','-')
     parts = s.split('-')
@@ -60,37 +57,36 @@ df = pd.merge(
     how='inner'
 )
 
-print(f"​Merged records: {len(df)}  (should match number of ranked players with trend data)\n")
+# --- Output the merged TrendIndex table ---
+print(f"Merged records: {len(df)}\n")
 print(df.sort_values(['Season','Rank']).to_string(index=False))
 
-# 8) Run correlations
-spearman_rho, spearman_p = spearmanr(df['Rank'], df['TrendIndex'])
-pearson_r,   pearson_p   = pearsonr(df['Rank'], df['TrendIndex'])
-
-print("\n--- Correlation results ---")
-print(f"Spearman ρ = {spearman_rho:.3f},  p‐value = {spearman_p:.3f}")
-print(f"Pearson  ρ = {pearson_r:.3f},  p‐value = {pearson_p:.3f}")
-
-# 9) Scatter plot with annotations
-plt.figure(figsize=(8,6))
+# --- Scatter plot: Avg. TrendIndex vs. Jersey Rank ---
+plt.figure(figsize=(10, 6))
 x = df['TrendIndex']
 y = df['Rank']
 
-# because Rank=1 is top seller & plotting downward:
+# invert y-axis so Rank=1 sits at the top
 plt.gca().invert_yaxis()
 
-scatter = plt.scatter(x, y, s=80, c=df['Season'].astype('category').cat.codes, cmap='tab10', alpha=0.8)
+# color‐code by season
+categories = df['Season'].astype('category')
+colors = categories.cat.codes
+scatter = plt.scatter(x, y, c=colors, cmap='tab10', s=80, alpha=0.8)
+
+# annotate each point with the player name
 for _, row in df.iterrows():
     plt.text(row['TrendIndex'], row['Rank'],
-             row['Player'], fontsize=8, ha='right', va='bottom')
+             row['Player'],
+             fontsize=8, ha='right', va='bottom')
 
-plt.title("Avg. Google Trends vs. Jersey Rank")
-plt.xlabel("Average TrendIndex (per season)")
+plt.title("Average Google Trends vs. Jersey Rank")
+plt.xlabel("Avg. Google Trends Index")
 plt.ylabel("Jersey Rank (1 = top seller)")
 
-# build legend mapping seasons → colors
+# build a legend mapping seasons → colors
 handles, _ = scatter.legend_elements(prop="colors")
-labels = list(df['Season'].astype('category').cat.categories)
+labels = list(categories.cat.categories)
 plt.legend(handles, labels, title="Season", bbox_to_anchor=(1.05,1), loc='upper left')
 
 plt.tight_layout()

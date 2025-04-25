@@ -69,4 +69,4 @@ df = pd.DataFrame(rows)
 df.to_csv('jersey_ranks.csv', index=False)
 
 print("Oluşan CSV'nin ilk 10 satırı:")
-print(df.head(10))
+print(df)
