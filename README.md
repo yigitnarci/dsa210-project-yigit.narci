@@ -107,6 +107,7 @@ Players with more awards are not always ranked higher in jersey sales. This coul
 
 ### Google Trends Index by Season
 ![Google Trends Index](figures/google-data-jersey-rank.png)
+
 A noticeable trend shows that players with higher Google search popularity tend to have better jersey sales. This supports our second hypothesis regarding public interest.
 
 ---
