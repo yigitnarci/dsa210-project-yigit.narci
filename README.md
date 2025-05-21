@@ -2,8 +2,8 @@
 
 ## Project Proposal
 
-This project will examine what influences NBA players' jersey sales. The goal is to understand how factors like **player performance and team achievements** contribute to jersey popularity.  
-By analyzing these elements, I hope to figure out **which aspects most strongly relate to jersey sales and public interest** in NBA players.
+This project examines what influences NBA players' jersey sales across five seasons. The goal is to understand how factors like **player performance, popularity, and physical attributes** contribute to jersey popularity.  
+By combining jersey rankings with stats, Google Trends data, and biometric information, the project identifies which aspects most strongly relate to jersey sales — and explores whether these patterns can be used to **predict jersey sales tiers** using machine learning.
 
 ## Research Questions
 
@@ -55,42 +55,6 @@ These features enabled us to explore physical characteristics as potential predi
 
 ---
 
-# NBA Jersey Sales Analysis and Its Relationship with Player Performance and Popularity
-
-## Project Overview
-This project investigates the drivers of NBA jersey sales over five seasons by combining jersey sales rankings with player performance metrics, awards data, and Google search trends to uncover the most relevant predictors of popularity.
-
-## Research Questions
-- How does a player's **on-court performance** (points per game, games played, minutes per game) affect jersey sales?
-- Does the **number of awards** influence player popularity through jersey sales?
-- Can **Google search trends** explain jersey sales popularity?
-
----
-
-## Data Sources
-- **Jersey Sales** (`jersey_ranks.csv`): Top-8 jersey sales rank per season (1 = highest seller).
-- **Performance & Awards** (`nba_top8_last5_cleaned_with_awards.csv`): Points/Game, Games Played, Minutes/Game, Award Count.
-- **Google Trends** (`combined_google_trends.csv`): Weekly average search popularity scores for each player.
-
----
-
-## Code Files Description
-
-| File Name                        | Description                                                                 |
-|----------------------------------|-----------------------------------------------------------------------------|
-| `stat_correlation.py`            | Calculates Spearman & Pearson correlations between jersey sales rank and player stats: Points/Game, Games Played, Minutes/Game, and Award Count. |
-| `google_graph_correlation.py`    | Performs correlation analysis between Google Trends index and jersey sales rank, outputs both Spearman and Pearson values. |
-| `pts_graph.py`                   | Generates scatter plot visualizing Points/Game by season and jersey rank. |
-| `game_played_graph.py`           | Visualizes Games Played per season vs. jersey rank using color-coded year markers. |
-| `minutepergame_played_graph.py` | Displays Minutes/Game data across five seasons and their relation to jersey ranks. |
-| `award_graph.py`                 | Creates award count plots and analyzes their distribution with respect to jersey ranks. |
-| `pearson_graph_hyp1.py`          | Generates Pearson regression plots for all stat-based metrics in one combined figure. |
-| `google_graph.py`                | Creates a scatter plot of average Google Trends vs. jersey sales rank for all players. |
-| `web scraping.py`                | Used for scraping season-by-season Google Trends data per player. (manual backup used in final version) |
-| `combining_trend_stats.py`       | Merges cleaned jersey ranking data with Google Trends averages by season and player. |
-
----
-
 ## 📓 Notebook
 You can view the project analysis notebook here: [🔗 dsa210_project_yigit_narci.ipynb](./dsa210_project_yigit_narci.ipynb)
 
@@ -130,19 +94,31 @@ A noticeable trend shows that players with higher Google search popularity tend 
 - **H₀**: No correlation between average Google Trends score and jersey rank.
 - **H₁**: There is a correlation.
 
+### Hypothesis 3: Length → Jersey Sales
+- **H₀₃:** Player height (length) is not correlated with jersey sales rank.
+- **H₁₃:** Player height is correlated with jersey sales rank.
+
+### Hypothesis 4: BMI → Jersey Sales
+- **H₀₄:** Player BMI is not correlated with jersey sales rank.
+- **H₁₄:** Player BMI is correlated with jersey sales rank.
+
 ---
 
 ## Analytical Methods
-- All datasets were cleaned and merged by `Season` and `Player`.
-- **Statistical Tests**:
-  - **Spearman & Pearson correlation** were calculated for all metrics using `stat_correlation.py`.
-  - Google Trends correlations were computed with `google_graph_correlation.py`.
+
+- All datasets were cleaned, normalized, and merged using `player_name` and `Season` as key identifiers.
+- Derived features such as **length** (player height) and **BMI** were calculated during the data enrichment phase.
+- **Statistical Testing**:
+  - **Spearman** and **Pearson correlation coefficients** were computed for each feature (performance, popularity, and physical metrics) against jersey sales rank.
+  - Visualizations (scatter plots with regression lines) were used to support correlation findings.
+- Feature engineering and hypothesis testing were primarily performed in a Jupyter Notebook environment.
 
 ---
 
 ## Results
 
 ### Correlation Summary Table
+
 | Metric         | Spearman ρ | p-value | Pearson r | p-value |
 |----------------|-------------|---------|-----------|---------|
 | Points/Game    |   0.095     |  0.586  |   0.089   |  0.614  |
@@ -150,23 +126,38 @@ A noticeable trend shows that players with higher Google search popularity tend 
 | Minutes/Game   |  -0.068     |  0.700  |  -0.067   |  0.701  |
 | Award Count    |  -0.149     |  0.393  |  -0.162   |  0.354  |
 | Google Trends  |  -0.412     |  0.008  |  -0.374   |  0.017  |
-
-### Interpretation
-
-- **Performance & Awards**: No statistically significant correlation found for any metric.
-  - H₀ retained.
-- **Google Trends**: Strong, significant inverse correlation with jersey sales.
-  - H₀ rejected, H₁ accepted.
-  
-We tested both hypotheses using Pearson and Spearman correlations, and found that while performance metrics such as points per game or award count had minimal influence, Google Trends data was a strong predictor of jersey sales. This indicates that popularity and public interest may outweigh pure athletic performance when it comes to fan purchasing behavior.
+| Length (Height) |  0.033     |  0.855  |   0.035   |  0.845  |
+| BMI            | -0.401      |  0.019  |  -0.440   |  0.009  |
 
 ---
 
+### Interpretation
+
+- **Performance & Awards (H₁):** No statistically significant correlation found for any performance metric.  
+  → **H₀ retained.**
+
+- **Google Trends (H₂):** Strong, statistically significant inverse correlation with jersey sales.  
+  → **H₀ rejected, H₁ accepted.**
+
+- **Length (H₃):** No correlation between player height and jersey sales.  
+  → **H₀ retained.**
+
+- **BMI (H₄):** Statistically significant moderate negative correlation.  
+  → **H₀ rejected, H₁ accepted.**
+  
+We tested each hypothesis using both Pearson and Spearman correlations. The results suggest that popularity (as measured by Google Trends) and physical build (BMI) may be better predictors of jersey sales than raw performance metrics or player height alone.
+
+---
 
 ## Conclusion
 
-- **Performance metrics and awards** do **not** significantly influence jersey sales rankings ⇒ H₀ retained.
-- **Google search popularity** shows a statistically significant inverse correlation with jersey sales ⇒ H₀ rejected, H₁ accepted.
+- **Player performance metrics** (points/game, minutes, awards) and **height** do **not** significantly correlate with jersey sales.  
+  → H₀ retained for Hypotheses 1 and 3.
+
+- **Google Trends popularity** and **BMI** both show statistically significant negative correlations with jersey sales rank.  
+  → H₀ rejected for Hypotheses 2 and 4.
+
+These findings highlight the growing importance of **public visibility and player persona** over just athletic statistics. Players who are widely searched or have a strong, marketable physical presence may attract more fan purchases, regardless of on-court performance alone.
 
 ---
 
