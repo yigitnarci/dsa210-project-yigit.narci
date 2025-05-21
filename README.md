@@ -82,6 +82,12 @@ Players with more awards are not always ranked higher in jersey sales. This coul
 
 A noticeable trend shows that players with higher Google search popularity tend to have better jersey sales. This supports our second hypothesis regarding public interest.
 
+### Physical Metrics vs. Jersey Sales Rank
+![Length and BMI Correlation](figures/length_and_bmi_graph.png)
+
+This figure visualizes the relationship between player height (Length) and BMI with jersey sales rank.  
+While **length** shows no visible correlation with sales, **BMI** displays a moderate negative trend, supporting our fourth hypothesis that body composition may play a minor role in jersey popularity.
+
 ---
 
 ## Hypotheses
