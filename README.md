@@ -5,45 +5,53 @@
 This project will examine what influences NBA players' jersey sales. The goal is to understand how factors like **player performance and team achievements** contribute to jersey popularity.  
 By analyzing these elements, I hope to figure out **which aspects most strongly relate to jersey sales and public interest** in NBA players.
 
-### Research Questions:
-- How does a player's **on-court performance** (points per game, games played, minutes played) affect jersey sales?
-- Is there a relationship between **team success (e.g., championship, playoffs)** and jersey sales?
-- Can **Google search trends** explain spikes in jersey sales?
+## Research Questions
+
+- Does a player’s on-court performance (points/game, minutes/game, games played, awards) predict jersey sales?
+- Is there a measurable relationship between public popularity (Google search trends) and jersey sales?
+- Do physical metrics like height and BMI correlate with jersey sales success?
 
 ---
 
-## Data to be Used
-
-The analysis is built on **multiple data sources**, focusing on **the top NBA jersey sales rankings** and enriched with player-specific variables.
+## Data Sources
 
 | Data Source                                      | Data Collected                                      | Purpose                                         |
 |--------------------------------------------------|-----------------------------------------------------|------------------------------------------------|
-| **Hoopshype (Top Jersey Sales)**                 | Jersey sales rankings for each NBA season          | Main target variable (ranking of sales)       |
-| **Basketball-Reference**                         | Points per Game (PTS), Games Played (GP), Total Minutes Played (MIN), Awards won (MVP, All-Star, etc.) | Player performance metrics                    |
-| **Google Trends (via pytrends API)**             | Search trend index for player names               | Player public popularity/interest metric     |
+| **Hoopshype (Top Jersey Sales)**                 | Jersey sales rankings for each NBA season (Top-8)  | Main target variable (ranking of sales)       |
+| **Basketball-Reference**                         | Points/Game (PTS), Games Played (GP), Minutes/Game (MIN), Awards | Player performance metrics                    |
+| **Google Trends (via pytrends API)**             | Weekly search index for player names               | Proxy for player popularity                   |
+| **Kaggle – NBA Players Data (all_seasons.csv)**  | Player height and weight                           | Used to compute physical metrics (length, BMI) |
 
 ---
 
-## Data Collection Plan
+## Data Enrichment
 
-The data was collected and **merged from multiple sources**:
+In addition to our original sources, we enriched the dataset with physical attributes by using the publicly available **“NBA Players Data – all_seasons.csv”** from Kaggle:  
+https://www.kaggle.com/datasets/justinas/nba-players-data
 
-### Step 1: **Primary Dataset (Jersey Sales)**
-- Top-8 NBA jersey sales per season from Hoopshype.
+From this dataset, we extracted:
+- **player_height** (in cm)
+- **player_weight** (in kg)
 
-### Step 2: **Performance & Popularity Metrics**
-- Stats (PTS/Game, Games Played, Minutes Played, Award Count) from Basketball-Reference.
-- Google Trends index collected via pytrends.
+These were used to derive:
+- **length** (same as player_height)
+- **BMI**, calculated as:  
+  \[
+  BMI = \frac{weight\ (kg)}{(height\ (m))^2}
+  \]
+
+These features enabled us to explore physical characteristics as potential predictors of jersey sales.
 
 ---
 
-## Final Dataset Sample Structure:
+## Enriched Dataset Sample Structure
 
-| Player          | Season   | Jersey Rank | PTS/Game | Games Played | Minutes/Game | Award Count | Avg Google Trends |
-|-----------------|----------|-------------|----------|----------------|----------------|---------------|--------------------|
-| LeBron James    | 2022-23  | 1           | 25.7     | 71             | 35.3           | 3             | 21.5               |
-| Stephen Curry   | 2024-25  | 2           | 26.1     | 73             | 34.9           | 0             | 20.2               |
-
+| Season   | player_name        | Jersey Rank | Points/Game | Games Played | Minutes/Game | Award Count | Google Trends Score | player_height | player_weight | length | BMI  |
+|----------|--------------------|-------------|-------------|--------------|--------------|-------------|---------------------|---------------|---------------|--------|------|
+| 2022-23  | LeBron James       | 1           | 28.9        | 55           | 35.5         | 2           | 92.1                | 206           | 113           | 206    | 26.6 |
+| 2022-23  | Stephen Curry      | 2           | 29.4        | 56           | 34.7         | 1           | 89.7                | 188           | 84            | 188    | 23.8 |
+| 2022-23  | Jayson Tatum       | 3           | 30.1        | 74           | 37.1         | 2           | 74.3                | 203           | 95            | 203    | 23.1 |
+| ...      | ...                | ...         | ...         | ...          | ...          | ...         | ...                 | ...           | ...           | ...    | ...  |
 
 ---
 
