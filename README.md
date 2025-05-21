@@ -178,6 +178,33 @@ Each visualization supports the respective hypothesis test, highlighting key tre
 
 ---
 
+## Machine Learning
+
+We expanded our analysis beyond hypothesis testing by training both **classification** and **regression** models on the enriched dataset (which now includes physical metrics like length and BMI).
+
+### Classification: Jersey Sales Tier  
+- **Target:** Jersey Rank binned into three tiers – High (ranks 1–3), Mid (4–6), Low (7–8).  
+- **Models Tested:** Logistic Regression, Random Forest, k-Nearest Neighbors, SVM, Gaussian Naïve Bayes, AdaBoost.  
+- **Evaluation Metrics:** Accuracy, macro-F1, weighted-F1, 5-fold cross-validation.  
+- **Best Performer:** **Random Forest** achieved the highest test accuracy (~0.56) and CV accuracy (~0.50 ± 0.32).  
+- **Feature Importances:** BMI was the most predictive feature, followed by Google Trends Score and Points/Game.
+
+### Regression: Continuous Jersey Rank  
+- **Models:**  
+  1. **Linear Regression** (RMSE ≈ 2.42, R² ≈ –0.38)  
+  2. **Gradient Boosting Regressor** (MAE ≈ 1.67, RMSE ≈ 1.82, R² ≈ 0.12)  
+- **Key Insight:** Non-linear modeling with Gradient Boosting improves predictive performance on actual rank values.  
+- **Example Prediction:** A hypothetical player with 24.5 PPG, 72 GP, 34.1 MPG, 1 award, 18.2 Trends, 200 cm height, BMI = 24.5 is predicted to rank ~3.75.
+
+---
+
+With these additions, the notebook and README now fully cover:
+1. Data enrichment & hypothesis testing  
+2. Unsupervised Exploration (PCA, K-Means, Hierarchical Clustering)  
+3. Supervised Learning (Classification & Regression)  
+
+This completes the project end-to-end.  
+
 ## GitHub Repository
 [🔗 View Project on GitHub](https://github.com/yigitnarci/dsa210-project-yigit.narci)
 
