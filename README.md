@@ -143,6 +143,8 @@ Before running hypothesis tests, we visualized the data to explore trends across
   - H₀ retained.
 - **Google Trends**: Strong, significant inverse correlation with jersey sales.
   - H₀ rejected, H₁ accepted.
+  
+We tested both hypotheses using Pearson and Spearman correlations, and found that while performance metrics such as points per game or award count had minimal influence, Google Trends data was a strong predictor of jersey sales. This indicates that popularity and public interest may outweigh pure athletic performance when it comes to fan purchasing behavior.
 
 ---
 
