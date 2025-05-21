@@ -91,18 +91,23 @@ Before running hypothesis tests, we visualized the data to explore trends across
 
 ### Points per Game by Season
 ![PTS/Game by Year](figures/ptg-game-by-year.png)
+Players with higher scoring averages do not consistently rank higher in jersey sales. This suggests that scoring alone may not be the main factor influencing fan purchases.
 
 ### Games Played by Season
 ![Games Played](figures/games-played-by-year.png)
+There is no clear pattern between the number of games played and jersey rank. Some high-selling players missed several games, suggesting other factors may play a larger role.
 
 ### Minutes per Game by Season
 ![Minutes/Game](figures/minute-per-game-average-by-year.png)
+Average playing time per game also shows no visible correlation with jersey sales rank. This further supports the notion that on-court activity is not the sole driver of popularity.
 
 ### Award Count by Season
 ![Award Count](figures/award-by-year.png)
+Players with more awards are not always ranked higher in jersey sales. This could mean awards have limited impact unless paired with public visibility or media presence.
 
 ### Google Trends Index by Season
 ![Google Trends Index](figures/google-data-jersey-rank.png)
+A noticeable trend shows that players with higher Google search popularity tend to have better jersey sales. This supports our second hypothesis regarding public interest.
 
 ---
 
