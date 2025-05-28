@@ -180,30 +180,45 @@ Each visualization supports the respective hypothesis test, highlighting key tre
 
 ## Machine Learning
 
-We expanded our analysis beyond hypothesis testing by training both **classification** and **regression** models on the enriched dataset (which now includes physical metrics like length and BMI).
+We expanded our analysis beyond hypothesis testing by training both classification and regression models on the enriched dataset (which now includes physical metrics like length and BMI).
+
+---
 
 ### Classification: Jersey Sales Tier  
-- **Target:** Jersey Rank binned into three tiers – High (ranks 1–3), Mid (4–6), Low (7–8).  
-- **Models Tested:** Logistic Regression, Random Forest, k-Nearest Neighbors, SVM, Gaussian Naïve Bayes, AdaBoost.  
-- **Evaluation Metrics:** Accuracy, macro-F1, weighted-F1, 5-fold cross-validation.  
-- **Best Performer:** **Random Forest** achieved the highest test accuracy (~0.56) and CV accuracy (~0.50 ± 0.32).  
-- **Feature Importances:** BMI was the most predictive feature, followed by Google Trends Score and Points/Game.
+**Target:** Jersey Rank binned into three tiers – High (ranks 1–3), Mid (4–6), Low (7–8)  
+**Models Tested:** Logistic Regression, Random Forest, k-Nearest Neighbors, SVM, Gaussian Naïve Bayes, AdaBoost  
+**Evaluation Metrics:** Accuracy, macro-F1, weighted-F1, 5-fold cross-validation  
+**Best Performer:** Random Forest achieved the highest test accuracy (~0.56) and CV accuracy (~0.50 ± 0.32)  
+**Feature Importances:** BMI was the most predictive feature, followed by Google Trends Score and Points/Game  
+
+---
 
 ### Regression: Continuous Jersey Rank  
-- **Models:**  
-  1. **Linear Regression** (RMSE ≈ 2.42, R² ≈ –0.38)  
-  2. **Gradient Boosting Regressor** (MAE ≈ 1.67, RMSE ≈ 1.82, R² ≈ 0.12)  
-- **Key Insight:** Non-linear modeling with Gradient Boosting improves predictive performance on actual rank values.  
-- **Example Prediction:** A hypothetical player with 24.5 PPG, 72 GP, 34.1 MPG, 1 award, 18.2 Trends, 200 cm height, BMI = 24.5 is predicted to rank ~3.75.
+**Models:**  
+- Linear Regression (RMSE ≈ 2.42, R² ≈ –0.38)  
+- Gradient Boosting Regressor (MAE ≈ 1.67, RMSE ≈ 1.82, R² ≈ 0.12)  
+
+**Key Insight:**  
+Gradient Boosting outperformed linear models by capturing non-linear trends in jersey popularity.  
+To better understand how feature selection impacts model performance, we tested **three different feature sets** within the Gradient Boosting pipeline:
+
+1. **Full Feature Set (7 variables)** – led to **R² ≈ –0.33**, due to noise from low-signal predictors  
+2. **Reduced Set (3 variables: Google Trends, BMI, PTS/G)** – improved to **R² ≈ 0.13**  
+3. **High-Correlation Set (2 variables: Google Trends, BMI)** – yielded best performance with **R² ≈ 0.18**  
+
+**Example Prediction:**  
+A hypothetical player with 24.5 PPG, 72 GP, 34.1 MPG, 1 award, 18.2 Google Trends, and BMI = 24.5 was predicted to rank **~2.94**
 
 ---
 
 With these additions, the notebook and README now fully cover:
-1. Data enrichment & hypothesis testing  
-2. Unsupervised Exploration (PCA, K-Means, Hierarchical Clustering)  
-3. Supervised Learning (Classification & Regression)  
 
-This completes the project end-to-end.  
+- Data enrichment & hypothesis testing  
+- Unsupervised Exploration (PCA, K-Means, Hierarchical Clustering)  
+- Supervised Learning (Classification & Regression with feature-based R² comparison)  
+
+This completes the project end-to-end.
+
 
 ## GitHub Repository
 [🔗 View Project on GitHub](https://github.com/yigitnarci/dsa210-project-yigit.narci)
