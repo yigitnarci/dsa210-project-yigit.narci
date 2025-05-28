@@ -58,20 +58,17 @@ These features enabled us to explore physical characteristics as potential predi
 ## 📓 Notebook
 You can view the project analysis notebook here: [🔗 dsa210_project_yigit_narci.ipynb](./dsa210_project_yigit_narci.ipynb)
 
-⚠️ Important Notice: Required CSV Files
-To successfully run the notebook, you must place the following CSV files in the same directory as the .ipynb file:
+## ⚠️ Important: Required CSV Files
 
-combined_google_trends.csv
+Before running the notebook, please ensure that the following CSV files are located **in the same directory** as the `.ipynb` file:
 
-all_seasons.csv
+- `combined_google_trends.csv`  
+- `all_seasons.csv`  
+- `avg_google_trends_by_season.csv`  
 
-avg_google_trends_by_season.csv
+You can download these files from the repository.
 
-These files are not auto-generated and must be manually downloaded from the repository’s data folder or from the original data sources referenced in the notebook.
-
-❗️Without these files, the notebook will raise FileNotFoundError and fail to execute key data analysis and modeling steps.
-
-Make sure to check that filenames are correct and paths are not altered.
+> **Note:** Without these files, the notebook will raise `FileNotFoundError` and fail during data loading and analysis steps.```
 
 ## Exploratory Data Analysis (EDA)
 Before running hypothesis tests, we visualized the data to explore trends across seasons and player profiles.
